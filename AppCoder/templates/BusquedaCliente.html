@@ -1,0 +1,18 @@
+{% extends 'inicio.html' %}
+
+
+{% block contenidoQuecambia %}
+   
+    <p>Resultados de la busqueda Clientes</p>
+    
+    {% if clientes %}    
+        <ul>
+            {% for cliente in clientes %}
+            <li>{{cliente}}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+    <p> No hay Resultados en la busqueda</p>
+    {% endif %}
+
+{% endblock contenidoQuecambia %}

@@ -20,32 +20,41 @@ def Crea_Cliente(req):
             data = miFormulario.cleaned_data
             cliente = Clientes(dni=data["dni"], nombre=data["nombre"], apellidoPaterno=data["apellidoPaterno"], apellidoMaterno=data["apellidoMaterno"], email=data["email"])
             cliente.save()
-            return render(req, "ListaClientes.html")
+            return render(req, "dato_creado.html", {"dato": 'Cliente'})
     else:
         miFormulario = FormularioClientes()
         return render(req, "FormularioClientes.html", {"miFormulario": miFormulario})
         
 def Lista_Cliente(req):
-    return render(req, "ListaClientes.html")
+    return render(req, "dato_creado.html")
 
 def Busca_Cliente(req: HttpRequest):
     print('method', req.method)
     print('GET', req.GET)
     if req.GET["nombre"]:
         dato = req.GET["nombre"]
-        #cliente = Clientes.objects.get(nombre=nombre)
-        #cliente = Clientes.objects.filter(nombre=nombre)
+        #cliente = Clientes.objects.get(nombre=dato)
+        #cliente = Clientes.objects.filter(nombre=dato)
         clientes = Clientes.objects.filter(nombre__icontains=dato)
         print (f'{clientes}')
-        for cliente in clientes:
-            print(f'{cliente}')
- #       if clientes[nombre] == False:
- #           clientes = Clientes.objects.filter(apellidoPaterno__icontains=dato)
-  #          print (f'{clientes}')
-  #          if clientes[apellidoPaterno] == False:
-  #              clientes = Clientes.objects.filter(apellidoMaterno__icontains=dato)
-  #              print (f'{clientes}')
+        if clientes.exists():
+            print ('paso el nombre')
+        else:
+            clientes = Clientes.objects.filter(apellidoPaterno__icontains=dato)
+            print ('paso el Apellido Paterno')
+            if clientes.exists():
+                print ('paso el Apellido Materno')
+            else:
+                clientes = Clientes.objects.filter(apellidoMaterno__icontains=dato)
+                if clientes.exists():
+                    pass
+                else:
+                    clientes = Clientes.objects.filter(dni__icontains=dato)
+                    if clientes.exists():
+                        pass
+                    else:
+                        return render(req, "no_existe_dato.html", {"dato": 'Cliente'})
 
         return render(req, "BusquedaCliente.html", {"clientes": clientes})
     else:
-        return HttpResponse(f'no hay resultados en la busqueda {req.GET["nombre"]}')
+        return render(req, "no_existe_dato.html", {"dato": 'Cliente'})

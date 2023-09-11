@@ -3,9 +3,15 @@
 
 {% block contenidoQuecambia %}
 
-    <h4>{{dato}} no encontrados!!!</h4>
+    <h4>{{vista}} no encontrado!!!</h4>
     <button>
-        <a href="{% url 'Cliente' %}"> Volver </a>
+        {% if vista == 'Clientes' %}
+            <a href="{% url 'Cliente' %}"> Volver </a>
+        {% elif vista == 'Categorias' %}
+            <a href="{% url 'Categoria' %}"> Volver </a>
+        {% elif vista == 'Articulos' %}
+            <a href="{% url 'Articulo' %}"> Volver </a>    
+        {% endif %}
     </button>
     
 {% endblock contenidoQuecambia %}

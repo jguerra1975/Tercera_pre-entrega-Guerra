@@ -9,7 +9,7 @@ class FormularioClientes(forms.Form):
 
 class FormularioCategorias(forms.Form):
     nombreCategoria = forms.CharField(max_length=40)
-    fechaCreacion = forms.DateTimeField()
+    ubicacion = forms.CharField(max_length=40)
 
 class FormularioArticulos(forms.Form):
     sku = forms.CharField(max_length=10)

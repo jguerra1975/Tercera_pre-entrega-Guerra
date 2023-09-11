@@ -14,10 +14,10 @@ class Clientes(models.Model):
 
 class Categorias(models.Model):
     nombreCategoria = models.CharField(max_length=40)
-    fechaCreacion = models.DateTimeField()
+    ubicacion = models.CharField(max_length=40, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.nombreCategoria}  {self.fechaCreacion}'
+        return f'{self.nombreCategoria}  {self.ubicacion}'
 
 class Articulos(models.Model):
     sku = models.CharField(max_length=10)

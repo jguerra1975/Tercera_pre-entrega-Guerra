@@ -1,5 +1,5 @@
 from django.urls import path
-from AppCoder.views import inicio, Pagina_Cliente , Crea_Cliente, Lista_Cliente, Busca_Cliente
+from AppCoder.views import inicio, Pagina_Cliente , Crea_Cliente, Lista_Cliente, Busca_Cliente, Pagina_Categoria, Crea_Categoria, Busca_Categoria, Pagina_Articulo, Crea_Articulo, Busca_Articulo
 
 urlpatterns = [
     path('', inicio, name="Inicio"),
@@ -7,9 +7,10 @@ urlpatterns = [
     path('crea-cliente', Crea_Cliente, name="CreaCliente"),
     path('dato_creado', Lista_Cliente, name="ListaCliente"),
     path('buscar-cliente', Busca_Cliente, name="BuscarCliente"),
-#    path('crear-categorias', Crear_Categorias, name="CrearCategorias"),
-#    path('buscar-categorias', Buscar_Categorias, name="BuscarCategorias"),
-#    path('crear-articulos', Crear_Articulos, name="CrearArticulos"),
-#    path('buscar-articulos', Buscar_Articulos, name="BuscarArticulos"),
-
+    path('categoria', Pagina_Categoria, name="Categoria"),
+    path('crea-categoria', Crea_Categoria, name="CreaCategoria"),
+    path('buscar-categoria', Busca_Categoria, name="BuscarCategoria"),
+    path('articulo', Pagina_Articulo, name="Articulo"),
+    path('crea-articulo', Crea_Articulo, name="CreaArticulo"),
+    path('buscar-articulo', Busca_Articulo, name="BuscarArticulo"),
 ]
